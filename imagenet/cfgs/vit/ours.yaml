@@ -1,0 +1,52 @@
+# Released Ours configuration for ImageNet-C.
+CORRUPTION:
+  DATASET: imagenet
+  SEVERITY: [5]
+  TYPE:
+    - gaussian_noise
+    - shot_noise
+    - impulse_noise
+    - defocus_blur
+    - glass_blur
+    - motion_blur
+    - zoom_blur
+    - snow
+    - frost
+    - fog
+    - brightness
+    - contrast
+    - elastic_transform
+    - pixelate
+    - jpeg_compression
+MODEL:
+  ADAPTATION: ours
+  ARCH: Standard_VITB
+OPTIM:
+  BETA: 0.9
+  LR: 0.0
+  OursLR: 1e-3
+  METHOD: SGD
+  STEPS: 1
+  WD: 0.0
+  Ours_slora_gamma: 0.5
+  Ours_plora_gamma: 2.0
+  Ours_merge_gamma: 3.0
+  Ours_use_slora: True
+  Ours_use_plora: True
+  Ours_use_gao: True
+  Ours_GAO_conf_thr: 0.5
+  Ours_GAO_rho: 0.4
+  Ours_GAO_min_samples: 2
+  Ours_gao_update: within_batch_symmetric
+  Ours_history_proj_thr: 0.99
+  Ours_switch_thr: 0.254
+  Ours_switch_gap: 6
+  Ours_switch_metric: frobenius
+  Ours_proto_ema: 0.2
+  Ours_switch_oracle: False
+  Ours_renew_mode: full
+TEST:
+  BATCH_SIZE: 50
+  ours_rank: 256
+  ours_switch_layers: [9, 10, 11]
+  ours_switch_subspace_r: 64
